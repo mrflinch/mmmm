@@ -32,10 +32,20 @@ const GlowingEffect = memo(
     const containerRef = useRef<HTMLDivElement>(null);
     const lastPosition = useRef({ x: 0, y: 0 });
     const animationFrameRef = useRef<number>(0);
+    const isInView = useRef(false);
+
+    useEffect(() => {
+      if (disabled || !containerRef.current) return;
+      const observer = new IntersectionObserver(([entry]) => {
+        isInView.current = entry.isIntersecting;
+      }, { threshold: 0 });
+      observer.observe(containerRef.current);
+      return () => observer.disconnect();
+    }, [disabled]);
 
     const handleMove = useCallback(
       (e?: MouseEvent | { x: number; y: number }) => {
-        if (!containerRef.current) return;
+        if (!containerRef.current || !isInView.current) return;
 
         if (animationFrameRef.current) {
           cancelAnimationFrame(animationFrameRef.current);

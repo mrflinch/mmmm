@@ -4,10 +4,10 @@ import { RainbowButton } from '@/src/components/ui/rainbow-button';
 import { GlowingEffect } from '@/src/components/ui/glowing-effect';
 import DashboardMockup from '@/src/components/DashboardMockup';
 import { LoadingSpinner } from '@/src/components/ui/loading-spinner';
+import { SplineScene } from '@/src/components/ui/splite';
 import { ArrowRight, Target, Phone, Database, BarChart3, Globe2 } from 'lucide-react';
 import { Page } from '@/src/types';
 
-const Spline = React.lazy(() => import('@splinetool/react-spline'));
 const BOOKING_URL = "https://cal.com/monder/quick-chat";
 
 export const HomePage = ({ setPage }: { setPage: (p: Page) => void }) => (
@@ -16,16 +16,10 @@ export const HomePage = ({ setPage }: { setPage: (p: Page) => void }) => (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
       {/* Spline Background */}
       <div className="absolute inset-0 z-0 opacity-60">
-        <Suspense fallback={
-          <div className="w-full h-full bg-black flex items-center justify-center">
-            <LoadingSpinner size="xl" text="Initializing Engine..." />
-          </div>
-        }>
-          <Spline 
-            scene="https://prod.spline.design/K1sWEgaisjO7t-Ck/scene.splinecode" 
-            className="w-full h-full"
-          />
-        </Suspense>
+        <SplineScene 
+          scene="https://prod.spline.design/K1sWEgaisjO7t-Ck/scene.splinecode" 
+          className="w-full h-full"
+        />
       </div>
 
       {/* Hero Content */}

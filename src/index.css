@@ -44,13 +44,22 @@
     --color-5: 90 100% 63%;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-[#050505] text-white antialiased selection:bg-brand-primary selection:text-white;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
 .glass {
   @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  will-change: transform, opacity;
+  transform: translateZ(0); /* Force GPU acceleration */
 }
 
 .text-gradient {
@@ -59,6 +68,7 @@
 
 .glow-primary {
   box-shadow: 0 0 30px rgba(65, 105, 225, 0.3);
+  will-change: box-shadow;
 }
 
 .text-glow {
@@ -68,10 +78,17 @@
 .glow-border {
   border-color: rgba(65, 105, 225, 0.4);
   box-shadow: inset 0 0 15px rgba(65, 105, 225, 0.1), 0 0 15px rgba(65, 105, 225, 0.1);
+  will-change: box-shadow, border-color;
 }
 
 .bg-glow {
   background: radial-gradient(circle at center, rgba(65, 105, 225, 0.15) 0%, transparent 70%);
+  will-change: background;
+}
+
+section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 500px;
 }
 
 .loader {

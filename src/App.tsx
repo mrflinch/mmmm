@@ -183,6 +183,7 @@ export default function App() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
+            className="will-change-[opacity,transform]"
           >
             <Suspense fallback={
               <div className="min-h-screen flex items-center justify-center">
